@@ -5,96 +5,70 @@ using namespace std;
 struct nodos{
 	int valor;
 	nodos *ptr;
-}nodo;
+}*lista=NULL;
+
+
+void agregar(int dato);
+void imprimir();
 
 
 int main(int argc, char** argv) {
 	
-	struct nodos *inicio;
-	struct nodos  *aux;
-	
-	//auxiliares
-	aux= new nodos();
-	aux->valor=4;
-	aux->ptr=NULL;
-	//cout<<aux->valor;
-	
-	inicio=aux;
-	aux= new nodos();
-	aux->valor=5;
-	aux->ptr=NULL;
-	//cout<<aux->valor;
-	
-	inicio->ptr=aux;
-	aux= new nodos();
-	aux->valor=6;
-	aux->ptr=NULL;
-	//cout<<aux->valor;
-	
-	inicio->ptr->ptr=aux;
-	aux= new nodos();
-	aux->valor=7;
-	aux->ptr=NULL;
-	//cout<<aux->valor;
-	
-	inicio->ptr->ptr->ptr=aux;
-	aux= new nodos();
-	aux->valor=8;
-	aux->ptr=NULL;
-	
-	inicio->ptr->ptr->ptr->ptr=aux;
-	//cout<<aux->valor;
+	int op=1,nu,dato;
+	while(op!=3){
 
-	
-	
-	nodos n1,n2,n3,n4,n5;
-	nodos *apu= &n1;
-	nodos *aux;
-	
-	apu=aux;
-	aux=new nodos();
-	
-	aux= new nodos;
-	aux->valor=1;
-	aux->ptr=NULL;
-	
-	
-	n1.valor=3;
-	n1.ptr=NULL;
-	
-	n2.valor=7;
-	n2.ptr=NULL;
-	
-	n3.valor=9;
-	n3.ptr=NULL;
-	
-	n4.valor=12;
-	n4.ptr=NULL;
-	
-	n5.valor=15;
-	n5.ptr=NULL;
-	
-	n1.ptr=&n2;
-	n2.ptr=&n3;
-	n3.ptr=&n4;
-	n4.ptr=&n5;
-	
-	cout<<"apuntador que apunta";
-	cout<<n1.valor<<endl;
-	cout<<n1.ptr->valor<<endl;
-	cout<<n1.ptr->ptr->valor<<endl;
-	cout<<n1.ptr->ptr->ptr->valor<<endl;
-	cout<<n1.ptr->ptr->ptr->ptr->valor<<endl;
-	
-	cout<<aux->valor;
-	
-	
-	cout<<"lista dinamica";
-	cout<<inicio->valor<<endl;
-	cout<<inicio->ptr->valor<<endl;
-	cout<<inicio->ptr->ptr->valor<<endl;
-	cout<<inicio->ptr->ptr->ptr->valor<<endl;
-	cout<<inicio->ptr->ptr->ptr->ptr->valor<<endl;
-	
-	return 0;
+	cout<<"..::MENU::..";
+	cout<<"\n1.agregar\n2.imprimir\n3.salir \n";
+	cin>>op;
+	if (op==1){
+		cout<<"funcion agregar\ncuantos nodos desea: ";
+		cin>>nu;
+		for (int i=0;i<nu;i++){
+			cout<<"inserte un valor para el nodo "<<i+1<<": ";
+			cin>>dato;
+		agregar( dato);
+	    }
+//		agregar(nu,nodos *lista,dato);
+		
+	}
+	 if(op==2){
+		cout<<"funcion imprimir\n";
+		imprimir();
+	}
 }
+	return 0;
+	}
+	
+	
+
+
+
+//funcion agregar
+void agregar(int dato){
+    nodos *nuevo=new nodos;
+    nuevo->ptr=NULL;
+    nuevo->valor=dato;
+    if(lista==NULL)
+        lista=nuevo;
+    else{
+        nodos *aux=lista;
+        while(aux->ptr!=NULL){
+                aux=aux->ptr;
+    }aux->ptr=nuevo;
+    }
+}
+	//cin>>rep;
+	//while (rep==1){
+	//	cin>>opcion;
+	//	if (opcion==1){
+	//		cin>>dato;
+	//		agregar(lista,dato);
+	//	}
+	//}
+void imprimir(){
+    nodos *aux=lista;
+    while(aux!=NULL){
+            cout<<aux->valor<<'\n';
+            aux=aux->ptr;
+    }
+    }
